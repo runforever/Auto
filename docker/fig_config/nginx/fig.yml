@@ -1,0 +1,7 @@
+nginx:
+  image: nginx:latest
+  ports:
+    - "80:80"
+  volumes:
+    - /data/fig_config/nginx/nignx.conf:/etc/nginx/nginx.conf
+

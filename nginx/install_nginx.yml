@@ -1,0 +1,21 @@
+---
+- hosts: your_web
+  remote_user: root
+
+  tasks:
+    - name: add newest stable nginx ppa
+      apt_repository: repo='ppa:nginx/stable'
+
+    - name: install nginx
+      apt: pkg=nginx state=present update_cache=yes
+      register: install_nginx
+    - debug: var=install_nginx.stdout_lines
+
+    - name: sync nginx conf
+      copy: src=nginx.conf dest=/etc/nginx/nginx.conf owner=root group=root mode=0644
+
+    - name: reload nginx
+      command: nginx -t
+      command: nginx -s reload
+      register: reload_nginx
+    - debug: var=reload_nginx.stdout_lines

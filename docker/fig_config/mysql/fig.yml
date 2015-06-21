@@ -1,0 +1,6 @@
+mysql:
+  image: sameersbn/mysql:latest
+  ports:
+    - "3306:3306"
+  volumes:
+    - "/data/mysql/mysql:/var/lib/mysql"

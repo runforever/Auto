@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: install docker
+      shell: wget -qO- https://get.docker.com/ | sh
+      register: install_docker
+    - debug: var=install_docker.stdout_lines

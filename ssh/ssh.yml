@@ -1,0 +1,14 @@
+---
+- hosts: all
+  remote_user: root 
+
+  tasks: 
+    - name: sync sshd config file
+      copy: src=sshd_config dest=/etc/ssh/sshd_config owner=root group=root mode=0644
+
+    - name: sync authorized_keys
+      copy: src=authorized_keys dest=/root/.ssh/authorized_keys owner=root group=root mode=0644
+
+    - name: restart ssh service
+      shell: service ssh restart
+

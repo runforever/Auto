@@ -1,0 +1,21 @@
+---
+- hosts: web_hosts
+  remote_user: deploy
+
+  tasks:
+    - name: git clone web
+      git: repo=git repo address
+
+    - name: init pin_venv
+      pip: name=supervisor virtualenv=/home/deploy/your_venv
+      pip: name=uwsgi virtualenv=/home/deploy/your_venv
+      pip: name=PIL virtualenv=/home/deploy/your_venv extra_args='--allow-external PIL --allow-unverified PIL'
+
+    - name: init supervisor log
+      file: path=/data/your_web/log state=directory mode=0755 owner=deploy group=deploy
+      file: path=/data/your_web/log/supervisord state=directory mode=0755 owner=deploy group=deploy
+      remote_user: root
+
+    - name: init supervisor tmp
+      file: path=/data/your_web/tmp state=directory mode=0755 owner=deploy group=deploy
+      remote_user: root

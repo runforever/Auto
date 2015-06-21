@@ -1,0 +1,34 @@
+- name: install pkg
+  apt: pkg={{ item  }} state=present update_cache=yes
+  with_items:
+    - gcc
+    - g++
+    - curl
+    - tmux
+    - python-dev
+    - python-setuptools
+    - python-pip
+    - htop
+    - zsh
+    - software-properties-common
+    - python-software-properties
+    - libpq-dev
+    - build-essential
+    - libmysqlclient-dev
+    - libevent-dev
+    - git
+    - wget
+    - mc
+
+- name: install python pkg
+  pip: name={{ item }}
+  with_items:
+    - fabric
+    - virtualenvwrapper
+    - ipython
+    - ipdb
+    - supervisor
+    - fig
+
+- name: add deploy user
+  user: name=deploy shell=/bin/zsh append=yes

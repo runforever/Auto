@@ -1,0 +1,8 @@
+---
+- hosts: your_web_hosts
+  remote_user: root
+
+  tasks:
+    - include: init-env.yml
+    - name: init web dir
+      file: path=/data owner=root group=root state=directory mode=0755

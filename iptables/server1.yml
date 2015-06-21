@@ -1,0 +1,15 @@
+---
+- hosts: your_web
+  remote_user: root
+
+  tasks:
+    - name: sync iptables rule
+      copy: src=pinbot_web_iptables.rules dest=/etc/iptables.rule owner=root group=root mode=0644
+
+    - name: run iptables rule
+      shell: iptables-restore < /etc/iptables.rule
+
+    - name: display rule
+      shell: iptables -L -n
+      register: table_rule
+    - debug: var=table_rule.stdout_lines

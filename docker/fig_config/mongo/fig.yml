@@ -1,0 +1,7 @@
+mongo:
+  image: mongo:latest
+  command: mongod --setParameter failIndexKeyTooLong=false --auth
+  volumes: 
+    - /data/mongo/mongo:/data/db
+  ports:
+    - "27017:27017"

@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks: 
+    - name: sync tmux conf
+      copy: src=tmux/tmux.conf dest=/root/.tmux.conf owner=root group=root mode=0644
+
+    - name: sync sysctl.conf
+      copy: src=kernel/sysctl.conf dest=/etc/sysctl.conf owner=root group=root mode=0644
+
+    - name: make sysctl effect
+      command: sysctl -p
+      register: excsys
+    - debug: var=excsys.stdout_lines

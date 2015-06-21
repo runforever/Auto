@@ -1,0 +1,9 @@
+; ansible hosts file user .ini format 
+; group
+; [test]
+
+; service ip address
+; 127.0.0.1
+
+; [web]
+; 127.0.0.1

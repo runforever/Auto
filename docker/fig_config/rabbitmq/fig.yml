@@ -1,0 +1,6 @@
+rabbitmq:
+  image: mikaelhg/docker-rabbitmq:latest
+  ports: 
+    - "5672:5672"
+  volumes:
+    - "/data/rabbitmq:/var/lib/rabbitmq/mnesia"

@@ -1,0 +1,7 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: sync fig config
+      synchronize: src=fig_config dest=/data
